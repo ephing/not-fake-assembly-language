@@ -60,3 +60,6 @@ o1 cannot be an immediate
 * push: pushes o1 onto stack in current activation record
 #### other
 * pop: pops most recently pushed thing off the current activation record
+
+#### Pure functions
+Labels ending with a dollar sign denotate pure functions, or functions that take 1 argument, have no global side effects, and also return the same thing for the same input. Abusing this, we can cache outputs of various recursive calls to calculate deeply nested calls effectively instantaneously.
