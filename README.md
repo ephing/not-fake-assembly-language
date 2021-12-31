@@ -1,5 +1,7 @@
 # not-fake-assembly-language
-It's very real
+It's very real  
+I was held at gunpoint by a [friend](https://github.com/thecsw/VMAGI) to make an assembly language that did recursive calls very fast  
+Also another [friend](https://github.com/matthewsanetra/sandy_isa) did it too  
 
 ## Usage:  
 `./emulator <assembly file>`
