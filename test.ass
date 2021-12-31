@@ -1,11 +1,12 @@
 fib$: 
     psh @arg
-    neq @cond 0 @arg
-    jif @cond tmp0
+    psh 0
+    neq !1 0 @arg
+    jif !1 tmp0
     ret 0
 tmp0:
-    neq @cond 1 @arg
-    jif @cond tmp1
+    neq !1 1 @arg
+    jif !1 tmp1
     ret 1
 tmp1:
     sub @arg !0 1
@@ -13,9 +14,9 @@ tmp1:
     psh @ret
     sub @arg !0 2
     call fib$
-    add @ret @ret !1
+    add @ret @ret !2
     ret @ret
 _start:
-    add @arg 100 0
+    add @arg 40 0
     call fib$
     add @exitcode @ret 0

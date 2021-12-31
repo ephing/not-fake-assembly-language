@@ -8,6 +8,10 @@
 
 class Parse {
 public:
+    /**
+     * Takes file and parses it
+     * Maps labels to instructions and returns list of instructions
+     */
     static std::vector<Instruction*>* parseFile(std::string filename, std::unordered_map<std::string,size_t>* labels) {
         auto instrs = new std::vector<Instruction*>();
         std::ifstream file(filename);
@@ -46,10 +50,14 @@ public:
             else if (in == "psh") instr->setType(Instruction::Type::PUSH);
             else if (in == "pop") instr->setType(Instruction::Type::POP);
             else {
+                // if not a label or an instruction type, then we should be mid-instruction, meaning
+                // that something is wrong if the type is still NONE
+                // I was too lazy to tell you what was wrong though
                 if (instr->getType() == Instruction::Type::NONE) {
                     throw std::runtime_error("Sum Ting Wong");
                     break;
                 }
+                // get all operands
                 if (Instruction::opdCount[instr->getType()]) {
                     instr->addOpd(in);
                     for (int i = 0; i < Instruction::opdCount[instr->getType()] - 1; i++) {
@@ -65,8 +73,6 @@ public:
         file.close();
         return instrs;
     }
-private:
-
 };
 
 #endif
